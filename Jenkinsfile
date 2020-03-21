@@ -6,6 +6,6 @@ stage('Maven Install') {
 bat 'mvn clean install'
 }
 stage('Docker build') {
-bat 'docker build -t myimage:v1 -f Dockerfile'
+bat 'docker build -t myimage:v1 -f Dockerfile .'
 }
 }
