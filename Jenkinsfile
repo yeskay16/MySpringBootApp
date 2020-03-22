@@ -3,7 +3,7 @@ stage('Checkout SCM') {
 checkout scm
 }
 stage('Maven Tests') {
-bat 'mvn clean test'
+bat 'mvn clean test -Dmaven.test.failure.ignore=true'
 post {
         always {
             junit '**/surefire-reports/*Test.xml'
