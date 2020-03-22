@@ -4,7 +4,7 @@ checkout scm
 }
 stage('Maven Tests') {
 try {
-bat 'mvn clean test'
+bat 'mvn clean test'; junit '**/surefire-reports/*Test.xml'
 } catch(err) {
 junit '**/surefire-reports/*Test.xml'//; if(currentBuild.result == 'UNSTABLE') { currentBuild.result = 'FAILURE' }; throw err
 }
