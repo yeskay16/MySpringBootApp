@@ -1,3 +1,4 @@
+//Jenkin Pipeline code
 node {
 stage('Checkout SCM') {
 checkout scm
