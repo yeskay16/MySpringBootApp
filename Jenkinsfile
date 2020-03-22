@@ -2,9 +2,9 @@ node {
 stage('Checkout SCM') {
 checkout scm
 }
-stage('Maven Tests') {
-bat 'mvn clean test'
-}
+//stage('Maven Tests') {
+//bat 'mvn clean test'
+//}
 stage('Junit step') {
 junit '**/surefire-reports/*Test.xml'
 }
