@@ -11,7 +11,7 @@ class UserServiceTest extends  Specification{
         when:
         def user = userService.getUserFromListOrDb(1000)
         then:
-        user.getId() == 1000
+        user.getId() == 1001
 
     }
 }
