@@ -3,7 +3,12 @@ stage('Checkout SCM') {
 checkout scm
 }
 stage('Maven Tests') {
-bat 'mvn clean test'; junit '**/surefire-reports/*Test.xml'
+bat 'mvn clean test'
+post {
+        always {
+            junit '**/surefire-reports/*Test.xml'
+        }
+    }
 }
 //stage('Junit step') {
 //junit '**/surefire-reports/*Test.xml'
