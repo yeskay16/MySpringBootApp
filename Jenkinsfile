@@ -3,13 +3,17 @@ stage('Checkout SCM') {
 checkout scm
 }
 stage('Maven Tests') {
-bat 'mvn clean test -Dmaven.test.failure.ignore=true'; junit '**/surefire-reports/*Test.xml'
+try {
+bat 'mvn clean test'
+} catch(err) {
+junit '**/surefire-reports/*Test.xml'; if(currentBuild.result = 'UNSTABLE') { currentBuild.result = 'FAILURE' }; throw err
+}
 }
 //stage('Junit step') {
 //junit '**/surefire-reports/*Test.xml'
 //}
 stage('Maven Install') {
-bat 'mvn clean install'
+bat 'mvn clean install -Dmaven.test.skip=true'
 }
 stage('Docker build') {
 bat 'docker build -t pkuma343/myimage:v1 -f Dockerfile .'
