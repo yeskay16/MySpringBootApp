@@ -11,7 +11,7 @@ junit '**/surefire-reports/*Test.xml'//; if(currentBuild.result == 'UNSTABLE') {
 }
 }
 stage('Sonar Scan') {
-bat 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000'
+bat 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.branch.name=env.BRANCH_NAME'
 }
 //stage('Junit step') {
 //junit '**/surefire-reports/*Test.xml'
