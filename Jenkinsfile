@@ -1,5 +1,5 @@
 //Jenkin Pipeline code
-@Library('jenkins-shared-libraries@master')
+@Library('jenkins-shared-libraries@master') _
 node {
 stage('Checkout SCM') {
 checkout scm
