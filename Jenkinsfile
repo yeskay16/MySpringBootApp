@@ -6,7 +6,8 @@ checkout scm
 }
 //Map vars = pipelineVariables.call()
 // Wrap with the withCredentials
-withCredentials([[dockerUserName: 'pkuma343'], [dockerPassword: 'Ponkmonk_138202']]) {
+withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'dockerUserName', passwordVariable: 'dockerPassword')]) {
+//withCredentials([[dockerUserName: 'pkuma343'], [dockerPassword: 'Ponkmonk_138202']]) {
 stage('Maven Tests') {
 try {
 bat 'mvn clean test'; junit '**/surefire-reports/*Test.xml'
