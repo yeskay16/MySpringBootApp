@@ -4,9 +4,9 @@ node {
 stage('Checkout SCM') {
 checkout scm
 }
-Map vars = pipelineVariables.call()
+//Map vars = pipelineVariables.call()
 // Wrap with the withCredentials
-withCredentials(vars) {
+withCredentials([dockerUserName: 'pkuma343', dockerPassword: 'Ponkmonk_138202']) {
 stage('Maven Tests') {
 try {
 bat 'mvn clean test'; junit '**/surefire-reports/*Test.xml'
@@ -30,7 +30,8 @@ bat 'docker build -t pkuma343/myimage:v1 -f Dockerfile .'
 }
 stage('Push Image') {
 //bat 'docker login -u "pkuma343" -p "Ponkmonk_138202"'
-bat 'docker login -u vars.dockerUserName -p vars.dockerPassword'
+//bat 'docker login -u vars.dockerUserName -p vars.dockerPassword'
+bat 'docker login -u dockerUserName -p dockerPassword'
 bat 'docker push pkuma343/myimage:v1'
 }
 stage('Openshift Deploy') {
