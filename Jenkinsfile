@@ -36,7 +36,7 @@ bat 'docker push pkuma343/myimage:v1'
 }
 stage('Openshift Deploy') {
 //bat '"C:\\Softwares\\openshift-origin-client-tools-v1.5.1-7b451fc-windows\\oc.exe" login --token=p-pw_rEzFszNt__4gKxJ5pjFmoiamnWj14OqUzb71g4 --server=https://api.us-west-1.starter.openshift-online.com:6443'
-bat "'C:\\Softwares\\openshift-origin-client-tools-v1.5.1-7b451fc-windows\\oc.exe' login --token=${ocToken} --server=https://api.us-west-1.starter.openshift-online.com:6443"
+bat ""C:\\Softwares\\openshift-origin-client-tools-v1.5.1-7b451fc-windows\\oc.exe" login --token=${ocToken} --server=https://api.us-west-1.starter.openshift-online.com:6443"
 bat '"C:\\Softwares\\openshift-origin-client-tools-v1.5.1-7b451fc-windows\\oc.exe" project my-project-pankaj'
 bat '"C:\\Softwares\\openshift-origin-client-tools-v1.5.1-7b451fc-windows\\oc.exe" create -f api.yaml'
 }
