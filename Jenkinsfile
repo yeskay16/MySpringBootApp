@@ -4,7 +4,7 @@ node {
 stage('Checkout SCM') {
 checkout scm
 }
-Map vars = pipelineVariables.call()
+ArraList vars = pipelineVariables.call()
 // Wrap with the withCredentials
 withCredentials(vars) {
 //withCredentials([[dockerUserName: 'pkuma343'], [dockerPassword: 'Ponkmonk_138202']]) {
