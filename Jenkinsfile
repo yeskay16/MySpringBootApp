@@ -11,8 +11,8 @@ withCredentials(pipelineVariables.call()) {
 
 stage('Maven Tests') {
 try {
-//bat curl "https://api.GitHub.com/repos/pkuma343/MySpringBootApp/statuses/${GIT_COMMIT}?access_token=c614fa345a39ae13a2f91b05b81f1f4c576fea66" -H "Content-Type: application/json" -X POST -d "{\"state\": \"success\",\"context\": \"continuous-integration/java/unit-test-execution\", \"description\": \"Jenkins\", \"target_url\": ${env.BUILD_URL}}"
-bat "curl https://api.GitHub.com/repos/pkuma343/MySpringBootApp/statuses/${GIT_COMMIT}?access_token=c614fa345a39ae13a2f91b05b81f1f4c576fea66 -H Content-Type: application/json -X POST -d {\"state\": \"success\",\"context\": \"continuous-integration/java/unit-test-execution\", \"description\": \"Jenkins\", \"target_url\": ${env.BUILD_URL}}"
+bat 'curl "https://api.GitHub.com/repos/pkuma343/MySpringBootApp/statuses/${GIT_COMMIT}?access_token=c614fa345a39ae13a2f91b05b81f1f4c576fea66" -H "Content-Type: application/json" -X POST -d "{\"state\": \"success\",\"context\": \"continuous-integration/java/unit-test-execution\", \"description\": \"Jenkins\", \"target_url\": ${env.BUILD_URL}}"'
+//bat "curl https://api.GitHub.com/repos/pkuma343/MySpringBootApp/statuses/${GIT_COMMIT}?access_token=c614fa345a39ae13a2f91b05b81f1f4c576fea66 -H Content-Type: application/json -X POST -d {\"state\": \"success\",\"context\": \"continuous-integration/java/unit-test-execution\", \"description\": \"Jenkins\", \"target_url\": ${env.BUILD_URL}}"
 bat 'mvn clean test'; junit '**/surefire-reports/*Test.xml'
 } catch(err) {
 junit '**/surefire-reports/*Test.xml'//; if(currentBuild.result == 'UNSTABLE') { currentBuild.result = 'FAILURE' }; throw err
