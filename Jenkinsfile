@@ -1,11 +1,11 @@
 //Jenkin Pipeline code
 @Library('jenkins-shared-libraries@master') _
 node {
-echo GIT_COMMIT
-echo env.BUILD_URL
 stage('Checkout SCM') {
 def SCM_VARS = checkout scm
 String GIT_COMMIT = SCM_VARS.GIT_COMMIT
+echo GIT_COMMIT
+echo env.BUILD_URL
 }
 // Wrap with the withCredentials
 withCredentials(pipelineVariables.call()) {
