@@ -50,7 +50,9 @@ def rtMaven = Artifactory.newMavenBuild()
 rtMaven.tool = 'Maven-Home'
 rtMaven.deployer releaseRepo: 'libs-release-local', snapshotRepo: 'libs-snapshot-local', server: server
 //rtMaven.resolver releaseRepo: 'libs-release', snapshotRepo: 'libs-snapshot', server: server
-def buildInfo = rtMaven.run pom: 'pom.xml', goals: "install -Dmaven.test.skip=true -Dbuildnumber=1.0.0"
+//def buildInfo = rtMaven.run pom: 'pom.xml', goals: "install -Dmaven.test.skip=true -Dbuildnumber=1.0.0"
+String command = "install -Dmaven.test.skip=true -Drevision=1.1.1"
+def buildInfo = rtMaven.run pom: 'pom.xml', goals: command
 server.publishBuildInfo buildInfo
 }
 }
