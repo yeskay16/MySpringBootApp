@@ -45,7 +45,7 @@ bat '"C:\\Softwares\\openshift-origin-client-tools-v1.5.1-7b451fc-windows\\oc.ex
 }
 */
 stage('Artifactory Deploy') {
-def server = Artifactory.server(Artifactory-Server)
+def server = Artifactory.server('Artifactory-Server')
 def rtMaven = Artifactory.newMavenBuild()
 rtMaven.tool = 'Maven-Home'
 rtMaven.deployer releaseRepo: 'libs-release-local', snapshotRepo: 'libs-snapshot-local', server: server
