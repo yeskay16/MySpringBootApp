@@ -22,8 +22,8 @@ spec:
   template:
     metadata:
       labels:
-        app: apiapp3
-        deploymentconfig: apidc3
+        app: apiapp2
+        deploymentconfig: apidc2
     spec:
       containers:
         - image: pkuma343/myimage:v1
