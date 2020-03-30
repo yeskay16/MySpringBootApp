@@ -1,4 +1,4 @@
-apiVersion: template.openshift.io/v1
+apiVersion: template.openshift.io/v1/templates
 kind: Template
 metadata:
   name: apitemplate
