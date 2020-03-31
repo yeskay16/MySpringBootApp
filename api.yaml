@@ -133,3 +133,21 @@ items:
       test: false
       triggers:
         - type: ConfigChange
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      annotations:
+      labels:
+        app: apiapp
+      name: application-service
+    spec:
+      ports:
+        - name: 8080-tcp
+          port: 8080
+          protocol: TCP
+          targetPort: 8080
+      selector:
+        app: apiapp
+        deploymentconfig: apidc2
+      sessionAffinity: None
+      type: ClusterIP
