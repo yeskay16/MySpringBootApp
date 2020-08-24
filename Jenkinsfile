@@ -14,6 +14,7 @@ bat 'mvn clean test'; junit '**/surefire-reports/*Test.xml'
 junit '**/surefire-reports/*Test.xml'//; if(currentBuild.result == 'UNSTABLE') { currentBuild.result = 'FAILURE' }; throw err
 }
 }
+/*
 stage('Sonar Scan') {
 //bat 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.branch.name=env.BRANCH_NAME'
 bat 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000'
@@ -51,5 +52,6 @@ def buildInfo = rtMaven.run pom: 'pom.xml', goals: 'install -Dmaven.test.skip=tr
 server.publishBuildInfo buildInfo
 }
 }
+*/
 }
 }
