@@ -14,6 +14,7 @@ import javax.validation.Valid;
 public class GetUserController {
     @Autowired
     UserService userService;
+
     @GetMapping(path = "/users/{id}/userinfo")
     public ResponseEntity<Object> getUserInfo(@PathVariable int id) {
         User user = userService.getUserFromListOrDb(id);
@@ -27,7 +28,5 @@ public class GetUserController {
     public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
         User savedUsed = userService.createUser(user);
         return new ResponseEntity(savedUsed, HttpStatus.OK);
-
-        }
-
+    }
 }
