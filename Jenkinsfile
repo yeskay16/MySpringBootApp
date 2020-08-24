@@ -9,7 +9,7 @@ withCredentials(pipelineVariables.call()) {
 //withCredentials([[dockerUserName: 'pkuma343'], [dockerPassword: 'Ponkmonk_138202']]) {
 stage('Maven Tests') {
 try {
-bat 'mvn clean test'; junit '**/surefire-reports/*Test.xml'
+bat 'mvn clean test'//; junit '**/surefire-reports/*Test.xml'
 } catch(err) {
 junit '**/surefire-reports/*Test.xml'//; if(currentBuild.result == 'UNSTABLE') { currentBuild.result = 'FAILURE' }; throw err
 }
