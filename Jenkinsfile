@@ -19,9 +19,6 @@ stage('Sonar Scan') {
 //bat 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.branch.name=env.BRANCH_NAME'
 bat 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000'
 }
-//stage('Junit step') {
-//junit '**/surefire-reports/*Test.xml'
-//}
 if (!env.CHANGE_TARGET) {
 stage('Maven Install') {
 bat 'mvn clean install -Dmaven.test.skip=true'
