@@ -1,0 +1,7 @@
+version: '2'
+services:
+  cassandra0:
+    image: cassandra
+    container_name: cassandra0
+    ports:
+      - 9042:9042
