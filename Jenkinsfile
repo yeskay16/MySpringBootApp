@@ -24,7 +24,7 @@ stage('Docker build') {
 bat 'docker build -t pkuma343/myimage:v1 -f Dockerfile .'
 }
 stage('Push Image') {
-bat 'docker login -u "pkuma343" -p "Ponkmonk_138202"'
+bat 'docker login -u "pkuma343" -p "Password"'
 bat 'docker push pkuma343/myimage:v1'
 }
 stage('Openshift Deploy') {
