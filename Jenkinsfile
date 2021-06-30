@@ -1,11 +1,4 @@
-pipeline {
-    agent any
-    tools {
-        jdk "jdk11"
-        maven "mvn"
-    }
-
-    stages{
+node {
     stage('Checkout SCM') {
         checkout scm
     }
@@ -48,6 +41,5 @@ pipeline {
         stage('Deploy') {
             sh 'echo "/path/to/kubectl apply -f api.yaml --kube-config=${PATH_TO_KUBE_CONFIG}"'
         }
-    }
     }
 }
