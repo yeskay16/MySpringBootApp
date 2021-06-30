@@ -33,14 +33,14 @@ pipeline {
 
         stage('Docker build') {
             steps {
-                sh "sudo docker build -t pkuma343/myimage:${env.BUILD_NUMBER} -f Dockerfile ."
+                sh "docker build -t pkuma343/myimage:${env.BUILD_NUMBER} -f Dockerfile ."
             }
         }
 
         stage('Push Image') {
             steps {
-                sh 'sudo docker login -u "pkuma343" -p "Password" || echo "Docker Login Failed"'
-                sh "sudo docker push pkuma343/myimage:${env.BUILD_NUMBER} || echo 'Docker Push cannot be done!'"
+                sh 'docker login -u "pkuma343" -p "Password" || echo "Docker Login Failed"'
+                sh "docker push pkuma343/myimage:${env.BUILD_NUMBER} || echo 'Docker Push cannot be done!'"
             }
         }
 
