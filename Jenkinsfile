@@ -21,7 +21,7 @@ pipeline {
 
         stage('Sonar Scan') {
             steps {
-                sh 'mvn sonar:sonar -Dsonar.projectKey=demo -Dsonar.host.url=http://ec2-3-142-132-142.us-east-2.compute.amazonaws.com:9000 -Dsonar.login=cb62d433bf1846d579f2879a8f080c77d4755b42'
+                sh 'mvn sonar:sonar -Dsonar.projectKey=demo -Dsonar.host.url=http://ip-172-31-6-130.us-east-2.compute.internal:9000 -Dsonar.login=cb62d433bf1846d579f2879a8f080c77d4755b42'
             }
         }
 
@@ -33,14 +33,14 @@ pipeline {
 
         stage('Docker build') {
             steps {
-                sh 'docker build -t pkuma343/myimage:${env.BUILD_NUMBER} -f Dockerfile .'
+                sh "docker build -t pkuma343/myimage:${env.BUILD_NUMBER} -f Dockerfile ."
             }
         }
 
         stage('Push Image') {
             steps {
-                sh 'docker login -u "pkuma343" -p "Password"'
-                sh 'docker push pkuma343/myimage:${env.BUILD_NUMBER}'
+                sh 'docker login -u "pkuma343" -p "Password" || echo "Docker Login Failed"'
+                sh "docker push pkuma343/myimage:${env.BUILD_NUMBER} || echo 'Docker Push cannot be done!'"
             }
         }
 
