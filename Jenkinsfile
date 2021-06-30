@@ -1,4 +1,8 @@
 node {
+    tools {
+        jdk "jdk11"
+        maven "mvn"
+    }
 
     stage('Checkout SCM') {
         checkout scm
@@ -17,7 +21,7 @@ node {
     }
 
     stage('Sonar Scan') {
-        sh 'mvn sonar:sonar -Dsonar.host.url=http://ec2-3-142-194-224.us-east-2.compute.amazonaws.com:9000'
+        sh 'mvn sonar:sonar -Dsonar.projectKey=demo -Dsonar.host.url=http://ec2-3-142-132-142.us-east-2.compute.amazonaws.com:9000 -Dsonar.login=cb62d433bf1846d579f2879a8f080c77d4755b42'
     }
 
     // stage('Junit step') {
