@@ -44,11 +44,11 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
-            steps{
-                sh 'echo "/path/to/kubectl apply -f api.yaml --kube-config=${PATH_TO_KUBE_CONFIG}"'
-            }
-        }
+//        stage('Deploy') {
+//            steps{
+//                sh 'echo "/path/to/kubectl apply -f api.yaml --kube-config=${PATH_TO_KUBE_CONFIG}"'
+//            }
+//        }
 
     }
 }
