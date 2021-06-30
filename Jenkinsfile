@@ -14,16 +14,8 @@ pipeline {
 
         stage('Maven Tests') {
             steps {
-
-                try {
-                    sh 'mvn clean test'; junit '**/surefire-reports/*Test.xml'
-                } catch(err) {
-                    junit '**/surefire-reports/*Test.xml';
-                    // if(currentBuild.result == 'UNSTABLE') { 
-                    //     currentBuild.result = 'FAILURE'; 
-                    //     throw err;
-                    // };
-                }
+                sh 'mvn clean test'
+                junit '**/surefire-reports/*Test.xml'
             }
         }
 
@@ -33,32 +25,30 @@ pipeline {
             }
         }
 
-        if (!env.CHANGE_TARGET) {
-
-            stage('Maven Install') {
-                steps {
-                    sh 'mvn clean install -Dmaven.test.skip=true'
-                }
-            }
-
-            stage('Docker build') {
-                steps {
-                    sh 'docker build -t pkuma343/myimage:${env.BUILD_NUMBER} -f Dockerfile .'
-                }
-            }
-
-            stage('Push Image') {
-                steps {
-                    sh 'docker login -u "pkuma343" -p "Password"'
-                    sh 'docker push pkuma343/myimage:${env.BUILD_NUMBER}'
-                }
-            }
-
-            stage('Deploy') {
-                steps{
-                    sh 'echo "/path/to/kubectl apply -f api.yaml --kube-config=${PATH_TO_KUBE_CONFIG}"'
-                }
+        stage('Maven Install') {
+            steps {
+                sh 'mvn clean install -Dmaven.test.skip=true'
             }
         }
+
+        stage('Docker build') {
+            steps {
+                sh 'docker build -t pkuma343/myimage:${env.BUILD_NUMBER} -f Dockerfile .'
+            }
+        }
+
+        stage('Push Image') {
+            steps {
+                sh 'docker login -u "pkuma343" -p "Password"'
+                sh 'docker push pkuma343/myimage:${env.BUILD_NUMBER}'
+            }
+        }
+
+        stage('Deploy') {
+            steps{
+                sh 'echo "/path/to/kubectl apply -f api.yaml --kube-config=${PATH_TO_KUBE_CONFIG}"'
+            }
+        }
+
     }
 }
